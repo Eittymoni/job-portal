@@ -3,10 +3,18 @@ import React, { useContext } from 'react';
 import Singinlotte from "../../assets/lottie/login.json"
 import AuthContext from '../../contaxt/AuthContaxt';
 import SocialLogin from './SocialLogin';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const SignIn = () => {
     
     const {signInUser} = useContext(AuthContext)
+    const location = useLocation()
+    const navigate =useNavigate()
+    console.log(location,'singn in')
+    const from = location.state || '/';
+
+
         const handleSignIn = e =>{
             e.preventDefault()
             const form = e.target
@@ -17,6 +25,8 @@ const SignIn = () => {
            signInUser(email,password)
            .then(result =>{
             console.log('sign in', result.user)
+            toast.success("Sign-in Successfull!",{position:"top-right"})
+            navigate(from)
            }) 
            .catch(error =>{
             console.log(error)

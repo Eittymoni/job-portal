@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import registerAnimationData from "../../assets/lottie/register.json"
 import AuthContext from '../../contaxt/AuthContaxt';
 import SocialLogin from './SocialLogin';
+import { toast } from 'react-toastify';
 
 const Register = () => {
 
@@ -17,6 +18,7 @@ const Register = () => {
         createUser(email,password)
         .then(result =>{
             console.log(result.user)
+          
         })
         .catch(error =>{
             console.log(error.message)
